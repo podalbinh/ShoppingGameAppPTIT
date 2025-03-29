@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300dp"
+    android:layout_height="300dp"
+    app:cardCornerRadius="8dp"
+    android:clickable="true"
+    android:layout_marginStart="4dp"
+    android:layout_marginEnd="4dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imgae_view_img"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            android:foreground="@drawable/discount_img_gradiant"
+            android:src="@drawable/discount_img_1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/text_view_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            app:guidelineUseRtl="true"
+            android:text="Shattered: Tale of the Forgotten King"
+            android:textColor="@color/discount_title_color"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/text_view_discount_perc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/discount_perc_bg"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="2dp"
+            android:text="-80%"
+            android:textColor="@color/text_color_secondary"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@+id/text_view_title"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/text_view_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/striking_text"
+            android:text="$29.99"
+            android:textSize="16sp"
+            android:textColor="@color/grey_font"
+            app:layout_constraintEnd_toEndOf="@+id/text_view_discount_perc"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_discount_perc" />
+
+        <TextView
+            android:id="@+id/text_view_discount_new_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="$5.99"
+            android:textColor="@color/discount_price_color"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/text_view_price"
+            app:layout_constraintEnd_toStartOf="@+id/text_view_price" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.75" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

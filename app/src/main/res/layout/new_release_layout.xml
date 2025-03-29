@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:layout_marginStart="4dp"
+    android:layout_marginEnd="4dp"
+    android:layout_marginBottom="8dp"
+    app:cardCornerRadius="8dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/image_view_new_release_img"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/new_release_img_1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="110dp"
+            android:padding="8dp"
+            app:layout_constraintEnd_toEndOf="@id/image_view_new_release_img"
+            app:layout_constraintStart_toStartOf="@id/image_view_new_release_img"
+            app:layout_constraintTop_toBottomOf="@id/image_view_new_release_img">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/new_releases"
+                android:textAllCaps="true"
+                android:textColor="@color/grey_font"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/text_view_new_release_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:scrollHorizontally="true"
+                android:text="Snowman"
+                android:textColor="@color/text_color_primary"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@+id/text_view_new_release_price"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+            <TextView
+                android:id="@+id/text_view_new_release_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="4dp"
+                android:text="$4.99"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_view_new_release_title" />
+
+            <Button
+                android:id="@+id/button_new_release_cart"
+                style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="4dp"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                app:backgroundTint="@color/colorPrimary"
+                app:cornerRadius="15dp"
+                app:icon="@drawable/ic_cart"
+                app:iconSize="20dp"
+                app:iconTint="#fff"
+                app:layout_constraintBottom_toBottomOf="@+id/text_view_new_release_price"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/text_view_new_release_price"
+                app:strokeWidth="0dp" />
+
+            <Button
+                android:id="@+id/button_new_release_valid"
+                style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="4dp"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:visibility="invisible"
+                app:backgroundTint="@color/colorPrimary"
+                app:cornerRadius="15dp"
+                app:icon="@drawable/ic_check"
+                app:iconSize="20dp"
+                app:iconTint="#fff"
+                app:layout_constraintBottom_toBottomOf="@+id/text_view_new_release_price"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/text_view_new_release_price"
+                app:strokeWidth="0dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

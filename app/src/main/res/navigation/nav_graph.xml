@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.shopping.nhom5.frags.HomeFragment"
+        android:label="Games Store"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_gameDetailFragment"
+            app:destination="@id/gameDetailFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_genreGamesFragment"
+            app:destination="@id/genreGamesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signinFragment"
+        android:name="com.shopping.nhom5.frags.SigninFragment"
+        android:label="@string/sign_in"
+        tools:layout="@layout/fragment_signin">
+        <action
+            android:id="@+id/action_LoginFragment_to_registerFragment"
+            app:destination="@id/signupFragment" />
+        <action
+            android:id="@+id/action_LoginFragment_to_loginWithEmailAndPassFragment"
+            app:destination="@id/signinWithEmailAndPassFragment"
+            app:popUpTo="@id/userFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_LoginFragment_self"
+            app:destination="@id/signinFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.shopping.nhom5.frags.CartFragment"
+        android:label="Your Cart"
+        tools:layout="@layout/fragment_cart" >
+        <action
+            android:id="@+id/action_cartFragment_to_gameDetailFragment"
+            app:destination="@id/gameDetailFragment" />
+        <action
+            android:id="@+id/action_cartFragment_to_checkoutFragment"
+            app:destination="@id/checkoutFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.shopping.nhom5.frags.SearchFragment"
+        android:label="Search"
+        tools:layout="@layout/fragment_search" />
+    <action android:id="@+id/action_global_searchFragment" app:destination="@id/searchFragment" />
+    <fragment
+        android:id="@+id/signupFragment"
+        android:name="com.shopping.nhom5.frags.SignupFragment"
+        android:label="@string/signup"
+        tools:layout="@layout/fragment_signup">
+        <argument
+            android:name="email"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/signinWithEmailAndPassFragment"
+        android:name="com.shopping.nhom5.frags.SigninWithEmailAndPassFragment"
+        android:label="@string/sign_in"
+        tools:layout="@layout/fragment_signin_with_email_and_pass" />
+    <fragment
+        android:id="@+id/gameDetailFragment"
+        android:name="com.shopping.nhom5.frags.GameDetailFragment"
+        android:label="{title}"
+        tools:layout="@layout/fragment_game_detail">
+        <argument
+            android:name="game"
+            app:argType="com.shopping.nhom5.models.Game" />
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_gameDetailFragment_to_genreGamesFragment"
+            app:destination="@id/genreGamesFragment" />
+        <action
+            android:id="@+id/action_gameDetailFragment_self"
+            app:destination="@id/gameDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userFragment"
+        android:name="com.shopping.nhom5.frags.UserFragment"
+        android:label="My Profile"
+        tools:layout="@layout/fragment_user">
+        <action
+            android:id="@+id/action_userFragment_to_loginFragment"
+            app:destination="@id/signinFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_userFragment_to_updateUserFragment"
+            app:destination="@id/updateUserFragment" />
+        <action
+            android:id="@+id/action_userFragment_to_ordersFragment"
+            app:destination="@id/ordersFragment" />
+    </fragment>
+    <action
+        android:id="@+id/action_global_userFragment"
+        app:destination="@id/userFragment"
+        app:popUpTo="@id/homeFragment"
+        app:popUpToInclusive="true" />
+    <fragment
+        android:id="@+id/updateUserFragment"
+        android:name="com.shopping.nhom5.frags.UpdateUserFragment"
+        android:label="Account Settings"
+        tools:layout="@layout/fragment_update_user" >
+        <argument
+            android:name="user"
+            app:argType="com.shopping.nhom5.models.User" />
+    </fragment>
+    <fragment
+        android:id="@+id/checkoutFragment"
+        android:name="com.shopping.nhom5.frags.CheckoutFragment"
+        android:label="Checkout"
+        tools:layout="@layout/fragment_checkout">
+        <argument
+            android:name="totalPrice"
+            app:argType="string" />
+        <argument
+            android:name="cartList"
+            app:argType="java.util.ArrayList" />
+        <action
+            android:id="@+id/action_checkoutFragment_to_ordersFragment"
+            app:destination="@id/ordersFragment"
+            app:popUpTo="@id/cartFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ordersFragment"
+        android:name="com.shopping.nhom5.frags.OrdersFragment"
+        android:label="My Orders"
+        tools:layout="@layout/fragment_orders" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.shopping.nhom5.frags.SettingsFragment"
+        android:label="@string/settings" />
+    <fragment
+        android:id="@+id/genreGamesFragment"
+        android:name="com.shopping.nhom5.frags.GenreGamesFragment"
+        android:label="{title}"
+        tools:layout="@layout/fragment_genre_games">
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_genreGamesFragment_to_gameDetailFragment"
+            app:destination="@id/gameDetailFragment" />
+        <argument
+            android:name="genre"
+            app:argType="com.shopping.nhom5.models.Genre" />
+    </fragment>
+</navigation>

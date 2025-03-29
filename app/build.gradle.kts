@@ -1,16 +1,17 @@
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
+    id("com.android.application")
+    id("androidx.navigation.safeargs")
+    id("com.google.gms.google-services")
 }
 
 android {
     namespace = "com.shopping.nhom5"
-    compileSdk = 35
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.shopping.nhom5"
         minSdk = 33
-        targetSdk = 35
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -27,11 +28,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-    kotlinOptions {
-        jvmTarget = "11"
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 }
 
@@ -43,8 +41,10 @@ dependencies {
     implementation("androidx.preference:preference:1.2.0")
     val nav_version = "2.7.5"
 
+    implementation("com.squareup.picasso:picasso:2.8")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.10.0")
+    implementation("com.github.denzcoskun:ImageSlideshow:0.1.2")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.github.denzcoskun:ImageSlideshow:0.1.2")
     implementation("com.squareup.picasso:picasso:2.8")

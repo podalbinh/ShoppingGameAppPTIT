@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="text_color_primary">#e0e0e0</color>
+    <color name="text_color_secondary">#000</color>
+    <color name="main_background">#121212</color>
+    <color name="toolbar_bg">#1f1f1f</color>
+    <color name="text_field">#1f1f1f</color>
+
+    <color name="colorPrimary">#F64B4B</color>
+    <color name="colorPrimaryVariant">#ec5551</color>
+    <color name="colorSecondary">#F64B4B</color>
+
+    <color name="colorPrimaryDark">#121212</color>
+
+    <!-- Splash Screen Gradiant -->
+    <color name="splash_screen_start_color">#121212</color>
+    <color name="splash_screen_end_color">#000</color>
+
+    <color name="colorDanger">#F12727</color>
+    <color name="genreTextBg">#1e1e1e</color>
+    <color name="lightGray">#1A000000</color>
+    <color name="blue">#0074e4</color>
+    <color name="black_50a">#80000000</color>
+    <color name="toolbarTextColor">#e0e0e0</color>
+</resources>
