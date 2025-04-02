@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    android:clickable="true"
+    android:focusable="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/order_ref"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Order: #1234"
+            android:textColor="@color/text_color_primary"
+            android:textSize="17sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/order_total_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total price: $210.95"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/order_ref"
+            app:layout_constraintTop_toBottomOf="@+id/order_ref" />
+
+        <ImageView
+            android:id="@+id/order_img_status"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/s_pending"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/order_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ordered at: 29/12/2023"
+            app:layout_constraintStart_toStartOf="@+id/order_total_price"
+            app:layout_constraintTop_toBottomOf="@+id/order_total_price" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>
