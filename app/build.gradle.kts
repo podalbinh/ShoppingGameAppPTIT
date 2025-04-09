@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.shopping.nhom5"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.shopping.nhom5"
@@ -39,7 +39,12 @@ dependencies {
     implementation ("com.google.code.gson:gson:2.9.0")
     implementation("com.google.firebase:firebase-database:20.3.0")
     implementation("androidx.preference:preference:1.2.0")
+    implementation(libs.cronet.embedded)
+    implementation(libs.androidx.credentials)
+    implementation(libs.androidx.credentials.play.services.auth)
+    implementation(libs.googleid)
     val nav_version = "2.7.5"
+    implementation ("de.hdodenhof:circleimageview:3.1.0")
 
     implementation("com.squareup.picasso:picasso:2.8")
     implementation("androidx.appcompat:appcompat:1.6.1")
@@ -80,4 +85,9 @@ dependencies {
 
     // Facebook Shimmer
     implementation("com.facebook.shimmer:shimmer:0.5.0")
+
+    // Cloudinary
+    implementation("com.cloudinary:cloudinary-android:2.3.1")
+    implementation ("com.google.firebase:firebase-auth:21.0.1")
+     implementation ("com.google.android.gms:play-services-auth:19.2.0")
 }

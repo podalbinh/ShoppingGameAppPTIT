@@ -11,6 +11,9 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,7 +30,8 @@ import java.util.ArrayList;
 
 public class SearchFragment extends Fragment {
 
-
+    NavController navController;
+    View v;
     FilterAdapter adapter;
     RecyclerView rc;
     ArrayList<Game> games;
@@ -48,6 +52,8 @@ public class SearchFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        v = view;
+        navController = Navigation.findNavController(v);
         rc = view.findViewById(R.id.rc_search);
         adapter = new FilterAdapter(new ArrayList<Game>());
         rc.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -56,6 +62,8 @@ public class SearchFragment extends Fragment {
         et.setEnabled(false);
         games = new ArrayList<>();
         mRef = FirebaseDatabase.getInstance().getReference("games");
+        adapter.setOnClickGameListener(game -> navigateToGameDetail(game));
+        mRef.keepSynced(true);
         mRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -90,7 +98,11 @@ public class SearchFragment extends Fragment {
     }
 
 
+    private void navigateToGameDetail(Game game) {
+        NavDirections action = SearchFragmentDirections.actionSearchFragmentToGameDetailFragment(game, game.getTitle());
+        navController.navigate(action);
 
+    }
     private void processSearch(String s) {
         ArrayList<Game> filteredList = new ArrayList<>();
         if(!s.trim().isEmpty()) {

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Games Store</string>
+    <string name="app_name">Steam Shop</string>
 
     <string name="cart">Cart</string>
     <string name="settings">Settings</string>
@@ -78,4 +78,5 @@
 
     <!-- Sync Preferences -->
     <string name="theme_title">Dark theme</string>
+    <string name="default_web_client_id">37932707639-0q2op1j8aa807tckusgd8sl5dpdu1tov.apps.googleusercontent.com</string>
 </resources>

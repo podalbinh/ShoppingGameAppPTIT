@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -32,8 +33,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.shopping.nhom5.R;
+import com.shopping.nhom5.adapters.CommentsAdapter;
 import com.shopping.nhom5.adapters.listeners.OnItemClickListener;
 import com.shopping.nhom5.models.CartItem;
+import com.shopping.nhom5.models.Comment;
 import com.shopping.nhom5.models.Game;
 import com.shopping.nhom5.models.Genre;
 import com.squareup.picasso.Picasso;
@@ -50,6 +53,12 @@ public class GameDetailFragment extends Fragment {
     FirebaseUser user;
     NavController navController;
     RecyclerView similarGamesRV;
+    private RecyclerView commentsRecyclerView;
+    private EditText commentInput;
+    private Button addCommentButton;
+    private CommentsAdapter commentsAdapter;
+    private List<Comment> commentsList;
+    private DatabaseReference commentsRef;
 
     public GameDetailFragment() {
         // Required empty public constructor
@@ -76,6 +85,22 @@ public class GameDetailFragment extends Fragment {
 
         setupImageSlider();
         setupSimilarGames();
+
+        commentsRecyclerView = view.findViewById(R.id.comments_recycler_view);
+        commentInput = view.findViewById(R.id.comment_input);
+        addCommentButton = view.findViewById(R.id.add_comment_button);
+
+        commentsList = new ArrayList<>();
+        commentsAdapter = new CommentsAdapter(commentsList);
+        commentsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        commentsRecyclerView.setAdapter(commentsAdapter);
+
+        // Assume gameId is passed as an argument to the fragment
+        String gameId = game.getId();
+        commentsRef = FirebaseDatabase.getInstance().getReference("games").child(gameId).child("comments");
+
+        fetchComments();
+        setupAddCommentButton();
     }
 
     private void initView() {
@@ -191,6 +216,69 @@ public class GameDetailFragment extends Fragment {
         NavDirections action = GameDetailFragmentDirections.actionGameDetailFragmentSelf(game, game.getTitle());
         navController.navigate(action);
     }
+
+    private void fetchComments() {
+        commentsRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                commentsList.clear();
+                for (DataSnapshot commentSnapshot : snapshot.getChildren()) {
+                    Comment comment = commentSnapshot.getValue(Comment.class);
+                    commentsList.add(comment);
+                }
+                commentsAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getContext(), "Failed to load comments.", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void setupAddCommentButton() {
+        addCommentButton.setOnClickListener(v -> {
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            if (user != null) {
+                // User is logged in
+                String text = commentInput.getText().toString().trim();
+                if (!text.isEmpty()) {
+                    String userId = user.getUid();
+                    DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users").child(userId);
+
+                    userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            String userName = snapshot.child("name").getValue(String.class);
+                            String userImageUrl = snapshot.child("imageUrl").getValue(String.class);
+                            long timestamp = System.currentTimeMillis();
+
+                            Comment comment = new Comment(userId, userName, userImageUrl, text, timestamp);
+                            commentsRef.push().setValue(comment).addOnCompleteListener(task -> {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(getContext(), "Comment added.", Toast.LENGTH_SHORT).show();
+                                    commentInput.setText("");
+                                } else {
+                                    Toast.makeText(getContext(), "Failed to add comment.", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                            Toast.makeText(getContext(), "Failed to fetch user details.", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                } else {
+                    Toast.makeText(getContext(), "Comment cannot be empty.", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(getContext(), "Please log in to add a comment.", Toast.LENGTH_SHORT).show();
+                navigateToUserLogin();
+            }
+        });
+    }
+
 }
 
 class SimilarGamesAdapter extends RecyclerView.Adapter<SimilarGamesAdapter.ViewHolder> {

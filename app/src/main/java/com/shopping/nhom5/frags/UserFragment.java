@@ -3,6 +3,7 @@ package com.shopping.nhom5.frags;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,22 +19,33 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 import com.shopping.nhom5.R;
 import com.shopping.nhom5.models.User;
+import com.shopping.nhom5.utils.CloudinaryConfig;
+import com.squareup.picasso.Picasso;
+
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 public class UserFragment extends Fragment {
@@ -57,6 +69,14 @@ public class UserFragment extends Fragment {
         // Required empty public constructor
     }
 
+    public User getTheUser() {
+        return theUser;
+    }
+
+    public void setTheUser(User theUser) {
+        this.theUser = theUser;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,13 +87,18 @@ public class UserFragment extends Fragment {
     public void onStart() {
         super.onStart();
         user = mAuth.getCurrentUser();
+
         if (user == null) {
+            Log.w("UserFragment", "User is null, redirecting to login.");
             navigateToLogin();
-        } else {
-            initDbRef(user.getUid());
-            getUserInfo();
+            return;
         }
+
+        Log.d("UserFragment", "User UID: " + user.getUid());
+        initDbRef(user.getUid());
+        getUserInfo();
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -147,35 +172,46 @@ public class UserFragment extends Fragment {
         overlay.setVisibility(View.VISIBLE);
         uploadProgress.setMax(100);
 
-        StorageReference mStorageRef = FirebaseStorage.getInstance().getReference("users/" + user.getUid());
-        mStorageRef.putFile(imageUri)
-                .addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                overlay.setVisibility(View.INVISIBLE);
-                if (task.isSuccessful()) {
-                    Toast.makeText(getContext(), "Image uploaded successfully!", Toast.LENGTH_LONG).show();
-                    mStorageRef.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Uri> task) {
-                            String url = task.getResult().toString();
-                            theUser.setAvatarUrl(url);
-                            Picasso.get().load(url).into(avatar);
-                            mRef.setValue(theUser);
-                        }
-                    });
-                } else {
-                    Toast.makeText(getContext(), "Something went wrong! " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+        new Thread(() -> {
+            try {
+                if (imageUri == null) {
+                    throw new Exception("Image URI is null");
                 }
-            }
-        })
-                .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
-                        double percent = (100 * snapshot.getBytesTransferred() / snapshot.getTotalByteCount());
-                        uploadProgress.setProgress((int) percent);
-                    }
+
+                // Use content resolver to get input stream from URI
+                java.io.InputStream inputStream = requireActivity().getContentResolver().openInputStream(imageUri);
+                if (inputStream == null) {
+                    throw new Exception("Failed to open input stream from URI");
+                }
+
+                Map<String, Object> uploadOptions = new HashMap<>();
+                uploadOptions.put("folder", "users");
+                uploadOptions.put("public_id", user.getUid());
+
+                Log.d("UploadImage", "Uploading file with URI: " + imageUri.toString());
+                Log.d("UploadImage", "Cloudinary config: " + CloudinaryConfig.getInstance().config.toString());
+
+                // Use the input stream for upload
+                Map uploadResult = CloudinaryConfig.getInstance().uploader().upload(inputStream, uploadOptions);
+                String url = (String) uploadResult.get("secure_url");
+
+                // Update UI on the main thread
+                requireActivity().runOnUiThread(() -> {
+                    theUser.setAvatarUrl(url);
+                    Picasso.get().load(url).into(avatar);
+                    mRef.setValue(theUser);
+                    Toast.makeText(getContext(), "Image uploaded successfully!", Toast.LENGTH_LONG).show();
+                    overlay.setVisibility(View.INVISIBLE);
                 });
+            } catch (Exception e) {
+                // Update UI on the main thread
+                requireActivity().runOnUiThread(() -> {
+                    overlay.setVisibility(View.INVISIBLE);
+                    Log.e("UploadImage", "Upload failed", e);
+                    Toast.makeText(getContext(), "Upload failed: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                });
+            }
+        }).start();
     }
 
     private void myOrdersBtnClickListener() {
@@ -197,21 +233,32 @@ public class UserFragment extends Fragment {
     }
 
     private void getUserInfo() {
-        mRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (task.isSuccessful()) {
+        mRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                if (task.getResult().exists()) {
                     theUser = task.getResult().getValue(User.class);
-                    showUserInfo();
-                    progressIndicator.setVisibility(View.GONE);
-                    scrollView.setVisibility(View.VISIBLE);
+                    if (theUser != null) {
+                        showUserInfo();
+                    } else {
+                        Toast.makeText(getContext(), "Không thể lấy thông tin người dùng.", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(getContext(), "Người dùng chưa được tạo trên hệ thống.", Toast.LENGTH_SHORT).show();
                 }
+                progressIndicator.setVisibility(View.GONE);
+                scrollView.setVisibility(View.VISIBLE);
+            } else {
+                Toast.makeText(getContext(), "Lỗi khi tải thông tin.", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
+
     private void showUserInfo() {
-        String fullName = theUser.getLastName() + " " + theUser.getFirstName();
+        String fullName;
+        if(theUser.getFirstName()!=null && theUser.getLastName()!=null)
+            fullName = theUser.getLastName() + " " + theUser.getFirstName();
+        else fullName= theUser.getLastName();
         fullNameTv.setText(fullName.toUpperCase());
         String avatarUrl = theUser.getAvatarUrl();
         if (!(avatarUrl.isEmpty())) {

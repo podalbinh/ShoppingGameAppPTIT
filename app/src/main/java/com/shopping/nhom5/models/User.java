@@ -33,6 +33,12 @@ public class User implements Serializable {
         this.avatarUrl = avatarUrl;
     }
 
+    public User(String email, String displayName) {
+        this.email=email;
+        this.lastName=displayName;
+
+    }
+
     public String getId() {
         return id;
     }

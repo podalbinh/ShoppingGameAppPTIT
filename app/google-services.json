@@ -13,7 +13,12 @@
           "package_name": "com.n1akai.gamesstore"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "37932707639-0q2op1j8aa807tckusgd8sl5dpdu1tov.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDlqS-rDSLP_1tkVLSOJwXsfY5ix_YJaAA"
@@ -21,7 +26,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "37932707639-0q2op1j8aa807tckusgd8sl5dpdu1tov.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     },
@@ -32,7 +42,20 @@
           "package_name": "com.shopping.nhom5"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "37932707639-kmqq6sr6h00hq4lbtkg2d0pe0sc89da4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.shopping.nhom5",
+            "certificate_hash": "36625530e7d1f358c976dd356d4983de32eeb54f"
+          }
+        },
+        {
+          "client_id": "37932707639-0q2op1j8aa807tckusgd8sl5dpdu1tov.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDlqS-rDSLP_1tkVLSOJwXsfY5ix_YJaAA"
@@ -40,7 +63,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "37932707639-0q2op1j8aa807tckusgd8sl5dpdu1tov.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

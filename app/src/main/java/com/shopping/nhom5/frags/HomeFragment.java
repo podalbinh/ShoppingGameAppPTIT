@@ -185,8 +185,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 discounts.clear();
-                Log.i("33333",snapshot.toString());
-//                writeSnapshotToFileGames(snapshot);
+
 
                 for (DataSnapshot ds : snapshot.getChildren()) {
                     Game game = ds.getValue(Game.class);
@@ -202,86 +201,16 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        FirebaseDatabase.getInstance().getReference("genres").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Log.i("33333",snapshot.toString());
-                writeSnapshotToFileGenres(snapshot);
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
 
-        DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("slider");
-        mRef.addValueEventListener(new ValueEventListener() {
-
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                Log.i("33333",snapshot.toString());
-//                writeSnapshotToFile(snapshot);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
         adapter.setOnGameClickListener(this::navigateToGameDetail);
     }
 
 
 
-    private void writeSnapshotToFileGames(DataSnapshot snapshotData) {
-        try (FileOutputStream fos = getActivity().openFileOutput("games-json", Context.MODE_APPEND)) {
-            StringBuilder json = new StringBuilder("{");
 
-            for (DataSnapshot gameSnapshot : snapshotData.getChildren()) {
-                json.append("\"").append(gameSnapshot.getKey()).append("\":{");
 
-                for (DataSnapshot field : gameSnapshot.getChildren()) {
-                    json.append("\"").append(field.getKey()).append("\":\"")
-                            .append(field.getValue()).append("\",");
-                }
-
-                json.deleteCharAt(json.length() - 1);
-                json.append("},");
-            }
-
-            json.deleteCharAt(json.length() - 1);
-            json.append("}");
-            fos.write(json.toString().getBytes());
-        } catch (IOException e) {
-            // Log the error if something goes wrong
-            Log.e("FileWriteError", "Error writing to file", e);
-        }
-    }
-    private void writeSnapshotToFileGenres(DataSnapshot snapshotData) {
-        try (FileOutputStream fos = getActivity().openFileOutput("genres-json", Context.MODE_APPEND)) {
-            StringBuilder json = new StringBuilder("{");
-
-            for (DataSnapshot gameSnapshot : snapshotData.getChildren()) {
-                json.append("\"").append(gameSnapshot.getKey()).append("\":{");
-
-                for (DataSnapshot field : gameSnapshot.getChildren()) {
-                    json.append("\"").append(field.getKey()).append("\":\"")
-                            .append(field.getValue()).append("\",");
-                }
-
-                json.deleteCharAt(json.length() - 1);
-                json.append("},");
-            }
-
-            json.deleteCharAt(json.length() - 1);
-            json.append("}");
-            fos.write(json.toString().getBytes());
-        } catch (IOException e) {
-            // Log the error if something goes wrong
-            Log.e("FileWriteError", "Error writing to file", e);
-        }
-    }
 
     private void latestGames() {
         FirebaseRecyclerOptions<Game> options = new FirebaseRecyclerOptions.Builder<Game>()
