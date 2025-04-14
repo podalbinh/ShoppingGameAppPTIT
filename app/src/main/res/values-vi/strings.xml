@@ -1,0 +1,80 @@
+<resources>
+    <string name="app_name">Games Store</string>
+
+    <string name="cart">Giỏ hàng</string>
+    <string name="settings">Cài đặt</string>
+    <string name="required">Bắt buộc</string>
+
+    <!-- Fragments Label -->
+    <string name="search_bar_hint">Tìm kiếm trò chơi...</string>
+    <string name="action_genre">Hành động</string>
+    <string name="rpg_genre">Nhập vai</string>
+    <string name="sports_genre">Thể thao</string>
+    <string name="adventure_genre">Phiêu lưu</string>
+    <string name="genres">Thể loại</string>
+    <string name="featured_discounts">Ưu đãi nổi bật</string>
+    <string name="new_releases">Phát hành mới</string>
+    <string name="create_your_acount">Tạo tài khoản của bạn ngay</string>
+    <string name="update_your_personal_information">Cập nhật thông tin cá nhân</string>
+    <string name="update">Cập nhật</string>
+    <string name="signup">Đăng ký</string>
+    <string name="first_name">Tên</string>
+    <string name="last_name">Họ</string>
+    <string name="email">Email</string>
+    <string name="country">Quốc gia</string>
+    <string name="password">Mật khẩu</string>
+    <string name="confirm_password">Xác nhận mật khẩu</string>
+    <string name="sign_in">Đăng nhập</string>
+    <string name="this_field_is_required">Trường này là bắt buộc</string>
+    <string name="first_name_and_last_name">Tên và họ là bắt buộc</string>
+    <string name="email_is_invalid">Email không hợp lệ</string>
+    <string name="passwords_dont_match">Mật khẩu không khớp</string>
+    <string name="more_than_7">Mật khẩu phải dài hơn 7 ký tự</string>
+    <string name="success">Thành công!</string>
+    <string name="use_another_email">Email này đã được sử dụng, hãy dùng email khác!</string>
+    <string name="something_went_wrong">Đã xảy ra lỗi!</string>
+    <string name="already_have_an_account">Đã có tài khoản? <font color="#F64B4B">Đăng nhập</font></string>
+    <string name="or">hoặc</string>
+    <string name="login_with_google">Đăng nhập bằng Google</string>
+    <string name="base_game">Trò chơi gốc</string>
+    <string name="buy_now">Mua ngay</string>
+    <string name="add_to_cart">Thêm vào giỏ</string>
+    <string name="developer">Nhà phát triển</string>
+    <string name="publisher">Nhà phát hành</string>
+    <string name="release_date">Ngày phát hành</string>
+    <string name="description">Mô tả</string>
+    <string name="platform">Nền tảng</string>
+    <string name="game_images">Hình ảnh trò chơi</string>
+    <string name="similar_games">Trò chơi tương tự</string>
+    <string name="zero_game_found">Không tìm thấy trò chơi nào</string>
+    <string name="completed_already">Đã hoàn tất</string>
+    <string name="canceled_already">Đã hủy</string>
+    <string name="canceled_successfully">Hủy thành công!</string>
+    <string name="cancel_order">Hủy đơn hàng</string>
+    <string name="do_you_want_to_cancel">Bạn có muốn hủy đơn hàng này không?</string>
+    <string name="yes">Có</string>
+    <string name="no">Không</string>
+    <string name="games">Trò chơi</string>
+    <string name="zero_games">0 trò chơi</string>
+    <string name="total_games">Tổng số trò chơi</string>
+    <string name="sub_total">Tạm tính</string>
+    <string name="total">Tổng cộng</string>
+    <string name="checkout">Thanh toán</string>
+    <string name="discount">Giảm giá</string>
+    <string name="deleted_successfully">Xóa thành công!</string>
+    <string name="coupon_is_valid">Mã giảm giá hợp lệ</string>
+    <string name="coupon_is_not_valid">Mã giảm giá không hợp lệ</string>
+    <string name="you_have_to_login">Bạn cần đăng nhập trước</string>
+
+    <string name="hello_blank_fragment">Xin chào từ fragment trống</string>
+
+    <!-- Preference Titles -->
+    <string name="languages_header">Ngôn ngữ</string>
+    <string name="theme_header">Giao diện</string>
+
+    <!-- Messages Preferences -->
+    <string name="language_title">Ngôn ngữ</string>
+
+    <!-- Sync Preferences -->
+    <string name="theme_title">Chế độ tối</string>
+</resources>
