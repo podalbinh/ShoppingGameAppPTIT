@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Games Store</string>
+
+    <string name="cart">Panier</string>
+    <string name="settings">Paramètres</string>
+    <string name="required">Requis</string>
+
+    <string name="search_bar_hint">Rechercher un jeu...</string>
+    <string name="action_genre">Action</string>
+    <string name="rpg_genre">JDR (Jeux de rôle)</string>
+    <string name="sports_genre">Sports</string>
+    <string name="adventure_genre">Aventure</string>
+    <string name="genres">Genres</string>
+    <string name="featured_discounts">Réductions en vedette</string>
+    <string name="new_releases">Nouveautés</string>
+    <string name="create_your_acount">Créez votre compte maintenant</string>
+    <string name="update_your_personal_information">Mettez à jour vos informations personnelles</string>
+    <string name="update">Mettre à jour</string>
+    <string name="signup">S\'inscrire</string>
+    <string name="first_name">Prénom</string>
+    <string name="last_name">Nom de famille</string>
+    <string name="email">E-mail</string>
+    <string name="country">Pays</string>
+    <string name="password">Mot de passe</string>
+    <string name="confirm_password">Confirmer le mot de passe</string>
+    <string name="sign_in">Se connecter</string>
+    <string name="this_field_is_required">Ce champ est requis</string>
+    <string name="first_name_and_last_name">Le prénom et le nom de famille sont requis</string>
+    <string name="email_is_invalid">L\'e-mail n\'est pas valide</string>
+    <string name="passwords_dont_match">Les mots de passe ne correspondent pas</string>
+    <string name="more_than_7">Le mot de passe doit contenir plus de 7 caractères</string>
+    <string name="success">Succès !</string>
+    <string name="use_another_email">Cet e-mail est déjà utilisé, utilisez un autre e-mail !</string>
+    <string name="something_went_wrong">Quelque chose s\'est mal passé !</string>
+    <string name="already_have_an_account">Vous avez déjà un compte ? <font color="#F64B4B">Connexion</font></string>
+    <string name="or">ou</string>
+    <string name="login_with_google">Se connecter avec Google</string>
+    <string name="base_game">Jeu de base</string>
+    <string name="buy_now">Acheter maintenant</string>
+    <string name="add_to_cart">Ajouter au panier</string>
+    <string name="developer">Développeur</string>
+    <string name="publisher">Éditeur</string>
+    <string name="release_date">Date de sortie</string>
+    <string name="description">Description</string>
+    <string name="platform">Plateforme</string>
+    <string name="game_images">Les photos du jeux</string>
+    <string name="similar_games">Jeux similaires</string>
+    <string name="zero_game_found">0 jeu trouvé</string>
+    <string name="completed_already">Déjà complété</string>
+    <string name="canceled_already">Déjà annulé</string>
+    <string name="canceled_successfully">Annulé avec succès!</string>
+    <string name="cancel_order">Annuler la commande</string>
+    <string name="do_you_want_to_cancel">Voulez-vous annuler cette commande?</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+    <string name="games">Jeux</string>
+    <string name="zero_games">0 jeux</string>
+    <string name="total_games">Total des jeux</string>
+    <string name="sub_total">Sous-total</string>
+    <string name="total">Total</string>
+    <string name="checkout">Vérifier</string>
+    <string name="discount">Réduction</string>
+    <string name="deleted_successfully">Supprimé avec succès!</string>
+    <string name="coupon_is_valid">Le coupon est valide</string>
+    <string name="coupon_is_not_valid">Le coupon n\'est pas valide</string>
+    <string name="you_have_to_login">Vous devez vous connecter d\'abord</string>
+
+
+    <string name="hello_blank_fragment">Bonjour fragment vide</string>
+    <!-- Preference Titles -->
+    <string name="languages_header">Langues</string>
+    <string name="theme_header">Thème</string>
+
+    <!-- Messages Preferences -->
+    <string name="language_title">Langue</string>
+
+    <!-- Sync Preferences -->
+    <string name="theme_title">Thème sombre</string>
+</resources>
