@@ -34,6 +34,8 @@
     <string name="use_another_email">Email này đã được sử dụng, hãy dùng email khác!</string>
     <string name="something_went_wrong">Đã xảy ra lỗi!</string>
     <string name="already_have_an_account">Đã có tài khoản? <font color="#F64B4B">Đăng nhập</font></string>
+    <string name="login_clickable_text">Đăng nhập</string>
+
     <string name="or">hoặc</string>
     <string name="login_with_google">Đăng nhập bằng Google</string>
     <string name="base_game">Trò chơi gốc</string>
@@ -77,4 +79,26 @@
 
     <!-- Sync Preferences -->
     <string name="theme_title">Chế độ tối</string>
+    <string name="platforms">Nền tảng:</string>
+    <string name="genress">Thể loại:</string>
+    <string name="title">Tiêu đề:</string>
+    <string name="subtotal">Tạm tính</string>
+    <string name="total_upcase">TỔNG CỘNG</string>
+    <string name="check_out">Thanh toán</string>
+    <string name="coupon">Mã giảm giá</string>
+    <string name="confirm">Xác nhận</string>
+    <string name="comments">Bình luận</string>
+    <string name="add_a_comment">Thêm bình luận...</string>
+    <string name="post_comment">Đăng bình luận</string>
+    <string name="continuee">Tiếp tục</string>
+    <string name="my_orders">Đơn hàng của tôi</string>
+    <string name="account_settings">Cài đặt tài khoản</string>
+    <string name="logout">Đăng xuất</string>
+    <string name="user_name">Tên người dùng</string>
+    <string name="this_is_a_comment">Đây là một bình luận.</string>
+    <string name="search">Tìm kiếm</string>
+    <string name="cancel">Hủy</string>
+    <string name="home">Trang chủ</string>
+    <string name="user">Người dùng</string>
+
 </resources>

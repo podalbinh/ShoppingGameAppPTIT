@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginTop="2dp"
-            android:text="Title:"
+            android:text="@string/title"
             app:layout_constraintStart_toEndOf="@+id/iv_poster"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -52,7 +52,7 @@
             android:id="@+id/textView18"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Genres:"
+            android:text="@string/genress"
             app:layout_constraintStart_toStartOf="@+id/tv_title"
             app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
@@ -69,7 +69,7 @@
             android:id="@+id/textView19"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Platforms:"
+            android:text="@string/platforms"
             app:layout_constraintStart_toStartOf="@+id/tv_genres"
             app:layout_constraintTop_toBottomOf="@+id/tv_genres" />
 

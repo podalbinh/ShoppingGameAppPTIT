@@ -348,7 +348,7 @@
                             android:id="@+id/comments_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Comments"
+                            android:text="@string/comments"
                             android:textSize="20sp"
                             android:textStyle="bold"
                             android:textColor="@color/colorPrimary"
@@ -365,7 +365,7 @@
                             android:id="@+id/comment_input"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Add a comment..."
+                            android:hint="@string/add_a_comment"
                             android:padding="12dp"
                             android:background="@drawable/edit_text_background"
                             android:layout_marginBottom="8dp" />
@@ -374,7 +374,7 @@
                             android:id="@+id/add_comment_button"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Post Comment"
+                            android:text="@string/post_comment"
                             android:backgroundTint="@color/colorPrimary"
                             android:textColor="@android:color/white"
                             android:layout_gravity="end" />

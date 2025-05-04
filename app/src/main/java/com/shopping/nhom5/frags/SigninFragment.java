@@ -1,10 +1,12 @@
 package com.shopping.nhom5.frags;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.Spanned;
+import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.StyleSpan;
@@ -93,24 +95,46 @@ public class SigninFragment extends Fragment {
 
     private void navigateToLoginFragTroughTxt() {
         TextView loginTxt = view.findViewById(R.id.edit_text_login_text);
-        SpannableString myString = new SpannableString(loginTxt.getText().toString());
 
-        int startIndex = 25;
-        int lastIndex = 30;
+        String fullText = getString(R.string.already_have_an_account);
+        String clickablePart = getString(R.string.login_clickable_text);
+
+        SpannableString myString = new SpannableString(fullText);
+
+        int startIndex = fullText.indexOf(clickablePart);
+        int endIndex = startIndex + clickablePart.length();
+
+        if (startIndex == -1) {
+            // Đề phòng trường hợp không tìm thấy (nội dung dịch sai, v.v.)
+            Log.e("SigninFragment", "Không tìm thấy đoạn text có thể click!");
+            loginTxt.setText(fullText);
+            return;
+        }
+
+        // Click event
         myString.setSpan(new ClickableSpan() {
             @Override
             public void onClick(@NonNull View widget) {
                 NavDirections action = SigninFragmentDirections.actionLoginFragmentToLoginWithEmailAndPassFragment();
                 navController.navigate(action);
             }
-        }, startIndex, lastIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
-        myString.setSpan(new UnderlineSpan(), startIndex, lastIndex, 0);
-        myString.setSpan(new StyleSpan(Typeface.BOLD),startIndex,lastIndex,0);
+            @Override
+            public void updateDrawState(@NonNull TextPaint ds) {
+                super.updateDrawState(ds);
+                ds.setUnderlineText(false); // bỏ gạch chân nếu muốn
+                ds.setColor(Color.GREEN);    // màu chữ
+            }
+        }, startIndex, endIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        // Style bổ sung
+        myString.setSpan(new StyleSpan(Typeface.BOLD), startIndex, endIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         loginTxt.setText(myString);
         loginTxt.setMovementMethod(LinkMovementMethod.getInstance());
+        loginTxt.setHighlightColor(Color.TRANSPARENT);
     }
+
 
     private void navigateToRegister() {
         Button continueBtn = view.findViewById(R.id.pay_button);

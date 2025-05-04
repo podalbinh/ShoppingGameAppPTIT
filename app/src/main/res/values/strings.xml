@@ -36,6 +36,7 @@
     <string name="use_another_email">This email is already in use, use another email!</string>
     <string name="something_went_wrong">Something went wrong!</string>
     <string name="already_have_an_account">Already have an account? <font color="#F64B4B">Login</font></string>
+    <string name="login_clickable_text">Login</string>
     <string name="or">or</string>
     <string name="login_with_google">Login with Google</string>
     <string name="base_game">Base Game</string>
@@ -79,4 +80,25 @@
     <!-- Sync Preferences -->
     <string name="theme_title">Dark theme</string>
     <string name="default_web_client_id">37932707639-0q2op1j8aa807tckusgd8sl5dpdu1tov.apps.googleusercontent.com</string>
+    <string name="platforms">Platforms:</string>
+    <string name="genress">Genres:</string>
+    <string name="title">Title:</string>
+    <string name="subtotal">Subtotal</string>
+    <string name="total_upcase">TOTAL</string>
+    <string name="check_out">Check out</string>
+    <string name="coupon">Coupon</string>
+    <string name="confirm">Confirm</string>
+    <string name="comments">Comments</string>
+    <string name="add_a_comment">Add a comment...</string>
+    <string name="post_comment">Post Comment</string>
+    <string name="continuee">Continue</string>
+    <string name="my_orders">My Orders</string>
+    <string name="account_settings">Account Settings</string>
+    <string name="logout">Logout</string>
+    <string name="user_name">User Name</string>
+    <string name="this_is_a_comment">This is a comment.</string>
+    <string name="search">Search</string>
+    <string name="cancel">Cancel</string>
+    <string name="home">Home</string>
+    <string name="user">User</string>
 </resources>

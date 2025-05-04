@@ -4,9 +4,9 @@
     <item android:id="@+id/cartFragment"
         android:icon="@drawable/ic_cart"
         app:showAsAction="always"
-        android:title="Cart"/>
+        android:title="@string/cart"/>
     <item android:id="@+id/searchFragment"
         android:icon="@drawable/ic_magnify"
         app:showAsAction="always"
-        android:title="Search" />
+        android:title="@string/search" />
 </menu>

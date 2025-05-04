@@ -220,6 +220,10 @@ public class CartFragment extends Fragment {
     }
 
     private void navigateToCheckOut() {
+        if(cartItems.isEmpty()) {
+            Toast.makeText(getContext(), "Your cart is empty", Toast.LENGTH_SHORT).show();
+            return;
+        }
         NavDirections action = CartFragmentDirections.actionCartFragmentToCheckoutFragment(totalPrice.toString(), cartItems);
         navController.navigate(action);
     }

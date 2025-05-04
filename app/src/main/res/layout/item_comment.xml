@@ -30,7 +30,7 @@
                 android:id="@+id/comment_user_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="User Name"
+                android:text="@string/user_name"
                 android:textStyle="bold"
                 android:textColor="@color/colorPrimary"
                 android:textSize="16sp" />
@@ -39,7 +39,7 @@
                 android:id="@+id/comment_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="This is a comment."
+                android:text="@string/this_is_a_comment"
                 android:textColor="@color/text_color_primary"
                 android:textSize="14sp"
                 android:layout_marginTop="4dp" />

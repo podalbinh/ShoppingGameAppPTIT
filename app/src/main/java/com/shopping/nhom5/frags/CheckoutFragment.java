@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.material.progressindicator.CircularProgressIndicator;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -44,6 +45,7 @@ public class CheckoutFragment extends Fragment {
     DatabaseReference mRef;
     FirebaseUser user;
 
+    TextInputLayout cvvInputLayout, cardNumberInputLayout, cardNameInputLayout, expDateInputLayout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,6 +60,10 @@ public class CheckoutFragment extends Fragment {
         v = view;
         navController = Navigation.findNavController(v);
         initView();
+        cardNameInputLayout = v.findViewById(R.id.textInputLayout);
+        cardNumberInputLayout = v.findViewById(R.id.textInputLayout2);
+        cvvInputLayout = v.findViewById(R.id.textCvv);
+        expDateInputLayout = v.findViewById(R.id.textExpDate);
         user = FirebaseAuth.getInstance().getCurrentUser();
         mRef = FirebaseDatabase.getInstance().getReference("orders").child(user.getUid());
         totalPrice = "Pay $" + CheckoutFragmentArgs.fromBundle(getArguments()).getTotalPrice();
@@ -75,6 +81,30 @@ public class CheckoutFragment extends Fragment {
         payBtn.setOnClickListener(v -> {
             v.setEnabled(false);
             indicator.setVisibility(View.VISIBLE);
+            if(cardNameInputLayout.getEditText().getText().toString().isEmpty()) {
+                cardNameInputLayout.setError("Please enter your name");
+                v.setEnabled(true);
+                indicator.setVisibility(View.INVISIBLE);
+                return;
+            }
+            if(cardNumberInputLayout.getEditText().getText().toString().isEmpty()) {
+                cardNumberInputLayout.setError("Please enter your card number");
+                v.setEnabled(true);
+                indicator.setVisibility(View.INVISIBLE);
+                return;
+            }
+            if (cvvInputLayout.getEditText().getText().toString().isEmpty()) {
+                cvvInputLayout.setError("Please enter your CVV");
+                v.setEnabled(true);
+                indicator.setVisibility(View.INVISIBLE);
+                return;
+            }
+            if(expDateInputLayout.getEditText().getText().toString().isEmpty()) {
+                expDateInputLayout.setError("Please enter your expiration date");
+                v.setEnabled(true);
+                indicator.setVisibility(View.INVISIBLE);
+                return;
+            }
             DatabaseReference myRef = mRef.push();
             Order order = new Order(myRef.getKey(), Double.parseDouble(CheckoutFragmentArgs.fromBundle(getArguments()).getTotalPrice()), cartList, Order.PENDING, user.getUid(), user.getEmail());
             myRef.setValue(order).addOnCompleteListener(task -> {

@@ -4,5 +4,5 @@
     <item android:id="@+id/searchFragment"
         android:icon="@drawable/ic_magnify"
         app:showAsAction="always"
-        android:title="Search" />
+        android:title="@string/search" />
 </menu>

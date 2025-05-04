@@ -34,6 +34,8 @@
     <string name="use_another_email">Cet e-mail est déjà utilisé, utilisez un autre e-mail !</string>
     <string name="something_went_wrong">Quelque chose s\'est mal passé !</string>
     <string name="already_have_an_account">Vous avez déjà un compte ? <font color="#F64B4B">Connexion</font></string>
+    <string name="login_clickable_text">Connexion</string>
+
     <string name="or">ou</string>
     <string name="login_with_google">Se connecter avec Google</string>
     <string name="base_game">Jeu de base</string>
@@ -77,4 +79,26 @@
 
     <!-- Sync Preferences -->
     <string name="theme_title">Thème sombre</string>
+    <string name="platforms">Plateformes :</string>
+    <string name="genress">Genres :</string>
+    <string name="title">Titre :</string>
+    <string name="subtotal">Sous-total</string>
+    <string name="total_upcase">TOTAL</string>
+    <string name="check_out">Passer à la caisse</string>
+    <string name="coupon">Code promo</string>
+    <string name="confirm">Confirmer</string>
+    <string name="comments">Commentaires</string>
+    <string name="add_a_comment">Ajouter un commentaire...</string>
+    <string name="post_comment">Publier le commentaire</string>
+    <string name="continuee">Continuer</string>
+    <string name="my_orders">Mes commandes</string>
+    <string name="account_settings">Paramètres du compte</string>
+    <string name="logout">Déconnexion</string>
+    <string name="user_name">Nom d utilisateur</string>
+    <string name="this_is_a_comment">Ceci est un commentaire.</string>
+    <string name="search">Rechercher</string>
+    <string name="cancel">Annuler</string>
+    <string name="home">Accueil</string>
+    <string name="user">Utilisateur</string>
+
 </resources>
